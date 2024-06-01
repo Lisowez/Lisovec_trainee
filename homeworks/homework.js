@@ -1,7 +1,7 @@
 //Как исправить "одни пятёрки"?
 
 // var result = [];
-// for (var i = 0; i < 5; i++) {
+// for (let i = 0; i < 5; i++) {
 //     result[i] = function () {
 //         console.log(i);
 //     };
@@ -12,25 +12,26 @@
 // result[3](); //5
 // result[4](); //5
 
+//заменил var на let!!!
+
 //////////////////////////////////////////////////
 
-// function getGroup() {
-//     let students = [];
-//     let i = 0;
-//     while (i < 10) {
-//         students[i] = function() {
-//             console.log(i);
-//         }
-//         i++
-//     }
-//
-//     return students;
-// }
+function getGroup() {
+  let students = [];
+  for (let i = 0; i < 10; i++) {
+    students[i] = function () {
+      console.log(i);
+    };
+  }
+  return students;
+}
 //
 // let group = getGroup();
 //
 // group[0](); // 10 как исправить на 0
 // group[5](); // 10                  5
+
+//поменял цикл и внес let i в него!!!
 
 //////////////////////////////////////////////////
 
@@ -57,3 +58,24 @@
 //     Текст ошибки: "В getUniqArray был передан невалидный параметр. Аргумент arr
 // должен быть массивом чисел".
 
+function namegetUniqArray(arr) {
+  let uniqueNumberSet = new Set(arr);
+  let uniqueNumberArr = Array.from(uniqueNumberSet);
+  if (
+    uniqueNumberArr.filter((x) => {
+      return typeof x !== "number";
+    }).length > 0
+  ) {
+    console.log(
+      new Error(
+        "В getUniqArray был передан невалидный параметр. Аргумент arr должен быть массивом чисел"
+      )
+    );
+    return new Error(
+      "В getUniqArray был передан невалидный параметр. Аргумент arr должен быть массивом чисел"
+    );
+  } else {
+    console.log(uniqueNumberArr);
+    return uniqueNumberArr;
+  }
+}
