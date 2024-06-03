@@ -36,6 +36,19 @@ function getGroup() {
 //////////////////////////////////////////////////
 
 // Напишите функцию multiply, должна принимать произвольное количество аргументов и возвращать их произведение.
+function multiply(argument) {
+  let accum = argument;
+  const foo = (num) => {
+    num ?? 1;
+    accum *= num;
+    return foo;
+  };
+  foo.valueOf = () => accum;
+  foo.toString = () => accum.toString();
+  return foo;
+}
+// const result2 = multiply(5)(2)(3);
+// console.log(Number(result2)); // 30
 
 // const result1 = multiply(2)(3)(4);
 // console.log(result1); // Вывод: 24
