@@ -76,19 +76,13 @@ function namegetUniqArray(arr) {
   let uniqueNumberArr = Array.from(uniqueNumberSet);
   if (
     uniqueNumberArr.filter((x) => {
-      return typeof x !== "number";
+      return typeof x !== "number" || !isNaN(x);
     }).length > 0
   ) {
-    console.log(
-      new Error(
-        "В getUniqArray был передан невалидный параметр. Аргумент arr должен быть массивом чисел"
-      )
-    );
     return new Error(
       "В getUniqArray был передан невалидный параметр. Аргумент arr должен быть массивом чисел"
     );
   } else {
-    console.log(uniqueNumberArr);
     return uniqueNumberArr;
   }
 }
