@@ -178,18 +178,23 @@ function baz() {
   });
 }
 
-foo()
-  .then((result) => {
-    console.log(result);
-    return bar();
-  })
-  .then((result) => {
-    console.log(result);
-    return baz();
-  })
-  .then((result) => {
-    console.log(result);
-  });
+function promisification(func) {
+  return function () {
+    return new Promise((resolve) => {
+      return func(resolve);
+    });
+  };
+}
+
+function allFuncCall() {
+  Promise.all([
+    promisification(foo),
+    promisification(bar),
+    promisification(baz),
+  ]).then((res) => res.forEach((result) => console.log(result)));
+}
+
+allFuncCall();
 
 // Написать функцию, чтобы починить последовательность выполнения A,B,C без использования колбэк хэлла
 // в функциях foo, bar,baz запрещено что-либо менять
